@@ -1,3 +1,8 @@
+trojan://53933382-fb70-48bd-adf5-363ae1972459@99tw02.tfzhc.top:443?allowInsecure=1#trojan config #83
+trojan://SoftNetConnect@130.185.123.26:42549?security=tls&amp;insecure=1&amp;headerType=none&amp;fp=chrome&amp;type=tcp&amp;allowInsecure=1&amp;sni=www.speedtest.net#trojan config #86
+trojan://SoftNetConnect@130.185.123.26:443?mode=auto&amp;path=%2F&amp;security=reality&amp;extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D&amp;pbk=lnP3zaTgKpFJpC8IYOJZUuAedJghDQPowXJp5diOzQA&amp;fp=chrome&amp;spx=%2F&amp;type=xhttp&amp;sni=www.yahoo.com&amp;sid=141b14d8#trojan config #88
+trojan://SoftNetConnect@130.185.123.26:8443?security=reality&amp;pbk=h0Lem3eyDGqkye4yAMuxixCMI2EqD1EKdH9Ky0Xetjg&amp;headerType=none&amp;fp=chrome&amp;spx=%2F&amp;type=tcp&amp;sni=www.yahoo.com&amp;sid=c7#trojan config #85
 trojan://bqj04ojoh6kuz140@3.67.85.74:8443?extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D&amp;fp=chrome&amp;host=&amp;mode=auto&amp;path=%2F%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo%40namedkenzo&amp;pbk=DXn1z6VwcEsoeMhRpTNLEAivl2KvEGcKAJKlxpptmEs&amp;security=reality&amp;sid=57ed1201&amp;sni=python.org&amp;spx=%2FrjEP5c0lnoGkVwd&amp;type=xhttp&amp;x_padding_bytes=100-1000#trojan config #71
 trojan://humanity@104.18.8.83:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;fp=chrome&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmlunch.com#trojan config #12
 trojan://humanity@188.114.97.6:443?path=%2Fassignment&amp;security=tls&amp;type=ws&amp;sni=www.creationlong.org#trojan config #59
+trojan://telegram-id-directvpn@3.143.140.129:22222?allowInsecure=0&amp;sni=trojan.burgerip.co.uk#trojan config #90
