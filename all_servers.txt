@@ -49,3 +49,5 @@ vless://b64ced11-143e-4ded-a985-a8de25461061@3.27.234.120:51808?Telegram=@Gozarg
 trojan://hxn2jK9Uzezogua0oHuq9Y8viN%3DUCe.2Jd@185.137.157.254:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&amp;Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&amp;security=tls&amp;insecure=0&amp;headerType=none&amp;type=tcp&amp;allowInsecure=0&amp;sni=bwww.directorypipeline.click&amp;brand=%40Arvand_soul#trojan config #49
 trojan://8r%3C%5B9%27l6hAO%238ZQi@104.194.156.228:8443?security=tls&amp;sni=Koma-YT.PAGeS.Dev&amp;tbype=ws&amp;path=/trTelegram#trojan config #50
 vless://931729a8-3c20-4841-89a1-f18dc9ce0a6f@cdn7-09.vk-cdnvideo.comb:8443?encryption=none&amp;security=tls&amp;insecure=0&amp;allowInsecure=0&amp;type=tcp&amp;headerType=none#vless config #51
+trojan://8r%3C%5B9%27l6hAO%238ZQi@113.30.188.2:2053?security=tls&amp;sni=Koma-YT.PAGeS.Dev&amp;tbypje=ws&amp;path=/trTelegram#trojan config #52
+trojan://8r%3C%5B9%27l6hAO%238ZQi@b138.124.50.47:8443?security=tls&amp;sni=Koma-YT.PAGeS.Dev&amp;type=ws&amp;path=/trTelegram#trojan config #53
