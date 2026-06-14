@@ -60,21 +60,26 @@ jobs:
           fi
 
       # ===== مرحله جدید: ساخت فایل Base64 برای ساب‌اسکریپشن =====
-      - name: Create Base64 subscription
-        run: |
-          if [ -f all_servers.txt ]; then
-            # حذف خطوط خالی و فاصله‌های اضافی
-            sed -i '/^\s*$/d' all_servers.txt
-            # تبدیل به Base64 بدون شکستن خطوط (مناسب v2rayNG)
-            cat all_servers.txt | base64 -w 0 > all_servers_base64.txt
-            echo "✅ Base64 subscription file created: all_servers_base64.txt"
-            # نمایش حجم فایل برای اطمینان
-            SIZE=$(wc -c < all_servers_base64.txt)
-            echo "📦 Base64 file size: $SIZE bytes"
-          else
-            echo "⚠️ all_servers.txt not found, creating empty Base64 file"
-            touch all_servers_base64.txt
-          fi
+      - name: Create Base64 subscription (fixed)
+  run: |
+    python3 << 'EOF'
+    import base64
+    # خواندن فایل و حذف خطوط خالی
+    with open('all_servers.txt', 'r') as f:
+        lines = [line.strip() for line in f if line.strip()]
+    if not lines:
+        print("⚠️ all_servers.txt is empty after cleaning")
+        open('all_servers_base64.txt', 'w').close()
+    else:
+        # هر کانفیگ باید در یک خط باشد (قبلاً هست)
+        content = '\n'.join(lines)
+        # تبدیل به Base64 بدون newline اضافی
+        b64 = base64.b64encode(content.encode('utf-8')).decode('ascii')
+        # ذخیره بدون خط جدید در انتها
+        with open('all_servers_base64.txt', 'w', newline='\n') as out:
+            out.write(b64)
+        print(f"✅ Base64 created with {len(lines)} configs, length {len(b64)}")
+    EOF
 
       - name: Commit and push
         run: |
