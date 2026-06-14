@@ -1,1 +1,1 @@
-hysteria2://rs2mR3g9bZiMloftx6lZQ59Um1Ld@80.66.81.78:9443?security=tls&amp;obfs=salamander&amp;obfs-password=oMgvuBy5Lj5kYM57sGsnjpjNcSEQ&amp;insecure=0&amp;sni=tunel1.washing.help#hysteria2 config #21
+hysteria2://rs2mR3g9bZiMloftx6lZQ59Um1Ld@80.66.81.78:9443?security=tls&amp;obfs=salamander&amp;obfs-password=oMgvuBy5Lj5kYM57sGsnjpjNcSEQ&amp;insecure=0&amp;sni=tunel1.washing.help#hysteria2 config #7
