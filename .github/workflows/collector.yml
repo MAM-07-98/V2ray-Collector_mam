@@ -26,53 +26,48 @@ jobs:
       - name: Export configs from database to all_servers.txt
         run: |
           if [ -f collector.db ]; then
-            sqlite3 collector.db "SELECT config FROM configs;" | sed 's/&amp;/\&/g' > all_servers.txt
+            sqlite3 collector.db "SELECT config FROM configs;" > all_servers.txt
             COUNT=$(wc -l < all_servers.txt)
-            echo "✅ $COUNT configs exported"
+            echo "✅ $COUNT configs exported to all_servers.txt"
           else
+            echo "⚠️ collector.db not found, creating empty all_servers.txt"
             touch all_servers.txt
           fi
 
       - name: Keep only last 100 configs
         run: |
           if [ -f all_servers.txt ]; then
+            # نگهداری فقط ۱۰۰ خط آخر (جدیدترین کانفیگ‌ها)
             tail -n 100 all_servers.txt > all_servers.tmp && mv all_servers.tmp all_servers.txt
+            COUNT=$(wc -l < all_servers.txt)
+            echo "✅ Trimmed to ${COUNT} latest configs (last 100 lines)"
+          else
+            echo "⚠️ all_servers.txt not found, skipping trim"
+          fi
+          
+      - name: Fix Config Remarks
+        run: |
+          if [ -f all_servers.txt ]; then
+            python edit_remarks.py
+          else
+            echo "⚠️ all_servers.txt not found, skipping remark fix."
+          fi
+ 
+      - name: (Optional) Rebuild protocol files
+        run: |
+          if [ -f src/rebuild_protocols.py ]; then
+            python src/rebuild_protocols.py
           fi
 
-      # مرحله Fix Config Remarks موقتاً غیرفعال شد
-      # - name: Fix Config Remarks
-      #   run: |
-      #     if [ -f all_servers.txt ]; then
-      #       python edit_remarks.py
-      #     fi
-
-      - name: Create clean Base64
-        run: |
-          python3 << 'EOF'
-          import base64
-          with open('all_servers.txt', 'r') as f:
-              # حذف خطوط خالی و اطمینان از نبود &amp;
-              lines = []
-              for line in f:
-                  line = line.strip()
-                  if line:
-                      line = line.replace('&amp;', '&')
-                      lines.append(line)
-          if not lines:
-              open('all_servers_base64.txt', 'w').close()
-              print("Empty file")
-          else:
-              content = '\n'.join(lines)
-              b64 = base64.b64encode(content.encode('utf-8')).decode('ascii')
-              with open('all_servers_base64.txt', 'w') as out:
-                  out.write(b64)
-              print(f"Base64 created with {len(lines)} configs")
-          EOF
 
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add all_servers.txt all_servers_base64.txt collector.db data/ servers/ 2>/dev/null || true
-          git commit -m "Update configs [skip ci]" || echo "No changes"
-          git push
+          git add all_servers.txt collector.db data/ servers/ 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update configs from Telegram [skip ci]"
+            git push
+          fi
