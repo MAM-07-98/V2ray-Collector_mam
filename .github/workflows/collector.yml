@@ -37,7 +37,6 @@ jobs:
       - name: Keep only last 100 configs
         run: |
           if [ -f all_servers.txt ]; then
-            # نگهداری فقط ۱۰۰ خط آخر (جدیدترین کانفیگ‌ها)
             tail -n 100 all_servers.txt > all_servers.tmp && mv all_servers.tmp all_servers.txt
             COUNT=$(wc -l < all_servers.txt)
             echo "✅ Trimmed to ${COUNT} latest configs (last 100 lines)"
@@ -59,37 +58,45 @@ jobs:
             python src/rebuild_protocols.py
           fi
 
-      # ===== مرحله جدید: ساخت فایل Base64 برای ساب‌اسکریپشن =====
-      - name: Create Base64 subscription (fixed)
-  run: |
-    python3 << 'EOF'
-    import base64
-    # خواندن فایل و حذف خطوط خالی
-    with open('all_servers.txt', 'r') as f:
-        lines = [line.strip() for line in f if line.strip()]
-    if not lines:
-        print("⚠️ all_servers.txt is empty after cleaning")
-        open('all_servers_base64.txt', 'w').close()
-    else:
-        # هر کانفیگ باید در یک خط باشد (قبلاً هست)
-        content = '\n'.join(lines)
-        # تبدیل به Base64 بدون newline اضافی
-        b64 = base64.b64encode(content.encode('utf-8')).decode('ascii')
-        # ذخیره بدون خط جدید در انتها
-        with open('all_servers_base64.txt', 'w', newline='\n') as out:
-            out.write(b64)
-        print(f"✅ Base64 created with {len(lines)} configs, length {len(b64)}")
-    EOF
-
-      - name: Commit and push
+      # ===== SECTION 1: Commit the main text file =====
+      - name: Commit all_servers.txt
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          # اضافه کردن فایل Base64 به لیست commit
-          git add all_servers.txt all_servers_base64.txt collector.db data/ servers/ 2>/dev/null || true
+          git add all_servers.txt collector.db data/ servers/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "Update configs from Telegram [skip ci]"
             git push
           fi
+
+      # ===== SECTION 2: Create the FINAL subscription file with metadata =====
+      - name: Create final subscription file (Base64)
+        run: |
+          # ایجاد یک فایل موقت با هدرهای استاندارد سابسکریپشن
+          # این کار باعث می‌شود v2rayNG آن را به عنوان یک سورس معتبر شناسایی کند
+          echo "#profile-title: base64:VjJSb2R5IC0gQ29sbGVjdG9y" > temp_sub.txt
+          echo "#profile-update-interval: 1" >> temp_sub.txt
+          
+          # اضافه کردن محتوای پالایش‌شده all_servers.txt به فایل موقت
+          # دستور cat محتوا را خوانده و sed خطوط خالی را حذف می‌کند
+          cat all_servers.txt | sed '/^\s*$/d' >> temp_sub.txt
+          
+          # ساخت فایل Base64 نهایی با حذف کامل whitespace اضافی (طبق استاندارد v2rayNG)[reference:2][reference:3]
+          # پرچم -w 0 باعث می‌شود خروجی در یک خط باشد و 'tr -d' هم فضاهای احتمالی را حذف می‌کند
+          BASE64_CONTENT=$(base64 -w 0 temp_sub.txt | tr -d ' \n\r')
+          echo -n "$BASE64_CONTENT" > all_servers_base64.txt
+          
+          # پاکسازی فایل موقت
+          rm temp_sub.txt
+          
+          echo "✅ Standard Base64 subscription file created: all_servers_base64.txt"
+
+      - name: Commit the Base64 subscription file
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add all_servers_base64.txt
+          git commit -m "Update Base64 subscription [skip ci]" || echo "No changes to commit."
+          git push
