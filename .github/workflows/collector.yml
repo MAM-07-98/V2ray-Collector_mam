@@ -74,7 +74,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add all_servers.txt collector.db data/ servers/ 2>/dev/null || true
+          git add all_servers_base64.txt collector.db data/ servers/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
