@@ -59,6 +59,17 @@ jobs:
             python src/rebuild_protocols.py
           fi
 
+      - name: Convert to Base64 subscription
+        run: |
+          if [ -f all_servers.txt ]; then
+            # استفاده از base64 با flag -w 0 برای عدم شکستن خطوط (مناسب V2rayNG)
+            cat all_servers.txt | base64 -w 0 > all_servers_base64.txt
+            echo "✅ Base64 subscription file created: all_servers_base64.txt"
+          else
+            echo "⚠️ all_servers.txt not found, skipping base64 conversion"
+            touch all_servers_base64.txt
+          fi
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions Bot"
