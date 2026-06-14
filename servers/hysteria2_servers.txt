@@ -1,1 +1,1 @@
-hysteria2://EsimHy2Game_7xK9mPq2@31.22.91.243:443?security=tls&amp;obfs=salamander&amp;obfs-password=EsimObfs_9mK2x7&amp;insecure=0&amp;sni=se.esimpson.org#%40FastNetTools%F0%9F%8D%89
+hysteria2://rs2mR3g9bZiMloftx6lZQ59Um1Ld@80.66.81.78:9443?security=tls&amp;obfs=salamander&amp;obfs-password=oMgvuBy5Lj5kYM57sGsnjpjNcSEQ&amp;insecure=0&amp;sni=tunel1.washing.help#hysteria2 config #21
