@@ -2,7 +2,7 @@ name: Telegram Collector Only
 
 on:
   workflow_dispatch:
-  
+
 jobs:
   collect:
     runs-on: ubuntu-latest
@@ -59,12 +59,29 @@ jobs:
             python src/rebuild_protocols.py
           fi
 
+      # ===== مرحله جدید: ساخت فایل Base64 برای ساب‌اسکریپشن =====
+      - name: Create Base64 subscription
+        run: |
+          if [ -f all_servers.txt ]; then
+            # حذف خطوط خالی و فاصله‌های اضافی
+            sed -i '/^\s*$/d' all_servers.txt
+            # تبدیل به Base64 بدون شکستن خطوط (مناسب v2rayNG)
+            cat all_servers.txt | base64 -w 0 > all_servers_base64.txt
+            echo "✅ Base64 subscription file created: all_servers_base64.txt"
+            # نمایش حجم فایل برای اطمینان
+            SIZE=$(wc -c < all_servers_base64.txt)
+            echo "📦 Base64 file size: $SIZE bytes"
+          else
+            echo "⚠️ all_servers.txt not found, creating empty Base64 file"
+            touch all_servers_base64.txt
+          fi
 
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add all_servers.txt collector.db data/ servers/ 2>/dev/null || true
+          # اضافه کردن فایل Base64 به لیست commit
+          git add all_servers.txt all_servers_base64.txt collector.db data/ servers/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
