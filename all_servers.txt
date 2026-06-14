@@ -28,3 +28,15 @@ ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.179:8
 vless://c214007f-cc98-45b2-86cb-e7a44ac17ecb@finlndcdnkonkori.konkuriran.sbs:8880?path=%2F&amp;security=none&amp;encryption=none&amp;host=fintestkonkor.sanjeshvipspeed.ir&amp;type=ws#vless config #28
 vless://708e7929-a262-4fb9-b09d-e70e2bc84b7b@gamefictoinspeed.info:8443?mode=stream-one&amp;path=%2F&amp;security=tls&amp;encryption=none&amp;extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D&amp;insecure=0&amp;host=moback2.notrogame.com&amp;fp=chrome#vless config #29
 vless://c214007f-cc98-45b2-86cb-e7a44ac17ecb@www.speedtest.net:8080?path=%2F&amp;security=none&amp;encryption=none&amp;host=dedarsi.konkuriran.sbs&amp;type=httpupgrade#vless config #30
+trojan://mitivpn@104.19.229.21:443?security=tls&amp;sni=gamingdll.ir&amp;alpn=http%2F1.1&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Fed%3Dmitivpn#trojan config #31
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.214:8080#ss config #32
+trojan://mitivpn@188.42.88.92:443?security=tls&amp;sni=gamingdll.ir&amp;alpn=http%2F1.1&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Fed%3Dmitivpn%2Findex.php#trojan config #33
+trojan://mitivpn@104.16.72.70:443?security=tls&amp;sni=gamingdll.ir&amp;alpn=http%2F1.1&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Findex.php%2Fed%3Dmitivpn#trojan config #34
+vless://5daab9b5-c9a0-47a6-a5c6-0977c6631c14@151.101.109.223:443?encryption=none&amp;security=tls&amp;sni=default.ssl.fastly.net&amp;type=ws&amp;host=bazaryabab.global.ssl.fastly.net&amp;path=%2F#vless config #35
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.189:8080#ss config #36
+trojan://mitivpn@27.50.48.49:443?security=tls&amp;sni=gamingdll.ir&amp;alpn=http%2F1.1&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Findex.html%2Fed%3Dmitivpn#trojan config #37
+vless://0058c215-ab1e-400c-a403-b5b2fda7e846@167.82.0.1:80?encryption=none&amp;security=none&amp;type=ws&amp;host=max-gb1.global.ssl.fastly.net&amp;path=%2F#vless config #38
+vless://931729a8-3c20-4841-89a1-f18dc9ce0a6f@77.74.123.165:8443?encryption=none&amp;security=tls&amp;sni=cdn3-87.vk-cdnvideo.com&amp;type=tcp&amp;headerType=none#vless config #39
+vless://3421a66c-0bd3-4eeb-8bb1-d50b35afd110@193.151.140.146:31375?encryption=none&amp;security=none&amp;sni=refersion.com&amp;type=tcp&amp;headerType=none#vless config #40
+vless://a3e387a8-2284-000a-b5ea-48837b9691ce@144.31.129.174:443?encryption=none&amp;flow=xtls-rprx-vision&amp;security=none&amp;sni=s3-fi-1.rucdn777.com&amp;type=tcp&amp;headerType=none#vless config #41
+vless://356ccb34-22cc-4446-a137-072bc60d65ca@bypass.fr-gt-01.com:8443?encryption=none&amp;flow=xtls-rprx-vision&amp;security=none&amp;sni=storage.yandex.net&amp;type=tcp&amp;headerType=none#vless config #42
