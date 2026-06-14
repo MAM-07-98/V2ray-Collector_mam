@@ -39,27 +39,31 @@ jobs:
             tail -n 100 all_servers.txt > all_servers.tmp && mv all_servers.tmp all_servers.txt
           fi
 
-      - name: Fix Config Remarks
-        run: |
-          if [ -f all_servers.txt ]; then
-            python edit_remarks.py
-          fi
+      # مرحله Fix Config Remarks موقتاً غیرفعال شد
+      # - name: Fix Config Remarks
+      #   run: |
+      #     if [ -f all_servers.txt ]; then
+      #       python edit_remarks.py
+      #     fi
 
-      - name: Create perfect Base64 (Python)
+      - name: Create clean Base64
         run: |
           python3 << 'EOF'
           import base64
-          # خواندن فایل و حذف خطوط خالی و جایگزینی &amp;
           with open('all_servers.txt', 'r') as f:
-              lines = [line.strip().replace('&amp;', '&') for line in f if line.strip()]
+              # حذف خطوط خالی و اطمینان از نبود &amp;
+              lines = []
+              for line in f:
+                  line = line.strip()
+                  if line:
+                      line = line.replace('&amp;', '&')
+                      lines.append(line)
           if not lines:
               open('all_servers_base64.txt', 'w').close()
               print("Empty file")
           else:
               content = '\n'.join(lines)
               b64 = base64.b64encode(content.encode('utf-8')).decode('ascii')
-              # حذف هرگونه whitespace اضافی
-              b64 = b64.strip()
               with open('all_servers_base64.txt', 'w') as out:
                   out.write(b64)
               print(f"Base64 created with {len(lines)} configs")
