@@ -34,13 +34,13 @@ jobs:
             touch all_servers.txt
           fi
 
-      - name: Keep only last 50 configs
+      - name: Keep only last 100 configs
         run: |
           if [ -f all_servers.txt ]; then
-            # نگهداری فقط ۵۰ خط آخر (جدیدترین کانفیگ‌ها)
+            # نگهداری فقط ۱۰۰ خط آخر (جدیدترین کانفیگ‌ها)
             tail -n 100 all_servers.txt > all_servers.tmp && mv all_servers.tmp all_servers.txt
             COUNT=$(wc -l < all_servers.txt)
-            echo "✅ Trimmed to ${COUNT} latest configs (last 50 lines)"
+            echo "✅ Trimmed to ${COUNT} latest configs (last 100 lines)"
           else
             echo "⚠️ all_servers.txt not found, skipping trim"
           fi
