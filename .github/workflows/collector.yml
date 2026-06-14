@@ -26,12 +26,10 @@ jobs:
       - name: Export configs from database to all_servers.txt
         run: |
           if [ -f collector.db ]; then
-            # اصلاح &amp; به & در همان لحظه خروجی
             sqlite3 collector.db "SELECT config FROM configs;" | sed 's/&amp;/\&/g' > all_servers.txt
             COUNT=$(wc -l < all_servers.txt)
-            echo "✅ $COUNT configs exported to all_servers.txt"
+            echo "✅ $COUNT configs exported"
           else
-            echo "⚠️ collector.db not found, creating empty all_servers.txt"
             touch all_servers.txt
           fi
 
@@ -39,50 +37,38 @@ jobs:
         run: |
           if [ -f all_servers.txt ]; then
             tail -n 100 all_servers.txt > all_servers.tmp && mv all_servers.tmp all_servers.txt
-            COUNT=$(wc -l < all_servers.txt)
-            echo "✅ Trimmed to ${COUNT} latest configs (last 100 lines)"
-          else
-            echo "⚠️ all_servers.txt not found, skipping trim"
           fi
-          
+
       - name: Fix Config Remarks
         run: |
           if [ -f all_servers.txt ]; then
             python edit_remarks.py
-          else
-            echo "⚠️ all_servers.txt not found, skipping remark fix."
-          fi
- 
-      - name: (Optional) Rebuild protocol files
-        run: |
-          if [ -f src/rebuild_protocols.py ]; then
-            python src/rebuild_protocols.py
           fi
 
-      - name: Create final Base64 subscription
+      - name: Create perfect Base64 (Python)
         run: |
-          if [ -f all_servers.txt ]; then
-            # حذف خطوط خالی و دوباره اصلاح &amp; (احتیاط)
-            sed -i '/^\s*$/d' all_servers.txt
-            sed -i 's/&amp;/\&/g' all_servers.txt
-            # تبدیل به Base64 یک خطی
-            cat all_servers.txt | base64 -w 0 > all_servers_base64.txt
-            echo "✅ Base64 subscription file created: all_servers_base64.txt"
-            SIZE=$(wc -c < all_servers_base64.txt)
-            echo "📦 Base64 file size: $SIZE bytes"
-          else
-            echo "⚠️ all_servers.txt not found, creating empty Base64 file"
-            touch all_servers_base64.txt
-          fi
+          python3 << 'EOF'
+          import base64
+          # خواندن فایل و حذف خطوط خالی و جایگزینی &amp;
+          with open('all_servers.txt', 'r') as f:
+              lines = [line.strip().replace('&amp;', '&') for line in f if line.strip()]
+          if not lines:
+              open('all_servers_base64.txt', 'w').close()
+              print("Empty file")
+          else:
+              content = '\n'.join(lines)
+              b64 = base64.b64encode(content.encode('utf-8')).decode('ascii')
+              # حذف هرگونه whitespace اضافی
+              b64 = b64.strip()
+              with open('all_servers_base64.txt', 'w') as out:
+                  out.write(b64)
+              print(f"Base64 created with {len(lines)} configs")
+          EOF
 
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add all_servers.txt all_servers_base64.txt collector.db data/ servers/ 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Update configs from Telegram [skip ci]"
-            git push
-          fi
+          git commit -m "Update configs [skip ci]" || echo "No changes"
+          git push
