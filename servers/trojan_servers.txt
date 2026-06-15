@@ -1,8 +1,9 @@
-trojan://LYaEYwjN8LjWTRJdCCTzW7V6gK7atJVu@ch-2.bexum.fun:443?security=tls&amp;sni=ch-2.bexum.fun#trojan config #31
-trojan://humanity@104.16.71.213:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;host=www.calmlunch.com&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmlunch.com#trojan config #13
-trojan://humanity@188.114.98.0:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;fp=chrome&amp;type=ws&amp;allowInsecure=0&amp;sni=www.multiplydose.com#trojan config #46
-trojan://humanity@www.calmloud.com:443?path=%2Fassignment&amp;security=tls&amp;alpn=http%2F1.1&amp;insecure=0&amp;fp=ios&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmloud.com#trojan config #84
-trojan://humanity@www.calmlunch.com:443?path=%2Fassignment&amp;security=tls&amp;host=www.calmlunch.com&amp;type=ws&amp;sni=www.calmlunch.com#trojan config #9
-trojan://mitivpn@104.16.72.70:443?mux=&amp;path=%2Findex.php%2Fed%3Dmitivpn&amp;security=tls&amp;alpn=http%2F1.1&amp;host=gamingdll.ir&amp;fp=chrome&amp;type=ws&amp;muxConcurrency=-1&amp;sni=gamingdll.ir#trojan config #65
-trojan://mitivpn@104.16.72.70:443?security=tls&amp;sni=gamingdll.ir&amp;fp=chrome&amp;alpn=http%2F1.1&amp;insecure=0&amp;allowInsecure=0&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Findex.php%2Fed%3Dmitivpn#trojan config #50
-trojan://mitivpn@104.19.229.21:443?security=tls&amp;sni=gamingdll.ir&amp;fp=chrome&amp;alpn=http%2F1.1&amp;insecure=0&amp;allowInsecure=0&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Fed%3Dmitivpn#trojan config #51
+trojan://LYaEYwjN8LjWTRJdCCTzW7V6gK7atJVu@ch-2.bexum.fun:443?security=tls&amp;sni=ch-2.bexum.fun#trojan config #20
+trojan://humanity@104.16.7.70:443?path=assignment&amp;security=tls&amp;insecure=0&amp;type=ws&amp;allowInsecure=0&amp;sni=www.ignitelimit.com#trojan config #98
+trojan://humanity@104.16.71.213:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;host=www.calmlunch.com&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmlunch.com#trojan config #2
+trojan://humanity@188.114.98.0:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;fp=chrome&amp;type=ws&amp;allowInsecure=0&amp;sni=www.multiplydose.com#trojan config #35
+trojan://humanity@www.calmloud.com:443?path=%2Fassignment&amp;security=tls&amp;alpn=http%2F1.1&amp;insecure=0&amp;fp=ios&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmloud.com#trojan config #73
+trojan://mitivpn@104.16.72.70:443?mux=&amp;path=%2Findex.php%2Fed%3Dmitivpn&amp;security=tls&amp;alpn=http%2F1.1&amp;host=gamingdll.ir&amp;fp=chrome&amp;type=ws&amp;muxConcurrency=-1&amp;sni=gamingdll.ir#trojan config #54
+trojan://mitivpn@104.16.72.70:443?security=tls&amp;sni=gamingdll.ir&amp;fp=chrome&amp;alpn=http%2F1.1&amp;insecure=0&amp;allowInsecure=0&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Findex.php%2Fed%3Dmitivpn#trojan config #39
+trojan://mitivpn@104.19.229.21:443?security=tls&amp;sni=gamingdll.ir&amp;fp=chrome&amp;alpn=http%2F1.1&amp;insecure=0&amp;allowInsecure=0&amp;type=ws&amp;host=gamingdll.ir&amp;path=%2Fed%3Dmitivpn#trojan config #40
+trojan://mitivpn@188.114.97.6:443?allowInsecure=0&amp;sni=www.ssl.global.digi.my.mitivpn.xyz&amp;ws=1&amp;wspath=%2Fed%3Dmitivpn#trojan config #92
