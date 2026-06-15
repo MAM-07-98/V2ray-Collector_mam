@@ -41,7 +41,7 @@ jobs:
       - name: Remove duplicate configs (هوشمندانه)
         run: |
           if [ -s all_servers.txt ] && [ -f src/dedup_configs.py ]; then
-            python src/dedup_configs.py all_servers.txt --clean
+            python src/dedup_configs.py all_servers.txt
           fi
 
       - name: Clean configs (جایگزینی &amp; و حذف پارامترهای خالی)
