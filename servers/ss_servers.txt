@@ -1,4 +1,4 @@
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozL2xZR3VPcGgxVDRpSERySkw0UnBDRTVKUE9ueXBvWmRqblVJelhKZFZzPQ@k1.cover20.ir:52502?type=tcp#ss config #70
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp0bmRDUDJEZjktUFR4X0owc1plb0htVGR2a2cwdzRLdg@144.31.7.129:51523#ss config #99
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpNaWkxNUlOVU1sc1htUlFMSzdZR3NacHF6YXdtOU13azFxb0p5VGNpTTNnPQ@k1.cover20.ir:52502?type=tcp#ss config #98
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.185:8080#ss config #86
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozL2xZR3VPcGgxVDRpSERySkw0UnBDRTVKUE9ueXBvWmRqblVJelhKZFZzPQ@k1.cover20.ir:52502?type=tcp#ss config #60
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp0bmRDUDJEZjktUFR4X0owc1plb0htVGR2a2cwdzRLdg@144.31.7.129:51523#ss config #89
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpNaWkxNUlOVU1sc1htUlFMSzdZR3NacHF6YXdtOU13azFxb0p5VGNpTTNnPQ@k1.cover20.ir:52502?type=tcp#ss config #88
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.185:8080#ss config #76
