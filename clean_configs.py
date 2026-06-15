@@ -1,13 +1,16 @@
 import re
 
 INPUT_FILE = "all_servers.txt"
-OUTPUT_FILE = "all_servers.txt"  # بازنویسی همان فایل
 
 def clean_line(line: str) -> str:
-    # جایگزینی &amp; با &
+    # 1. &amp; -> &
     line = line.replace("&amp;", "&")
-    # حذف & اضافه قبل از # (مثلاً security=none&# -> security=none#)
+    # 2. حذف & اضافه قبل از #
     line = re.sub(r'&+#', '#', line)
+    # 3. حذف پارامترهای خالی مثل ?path=# , ?path=/?ed=2560&# و ... 
+    line = re.sub(r'\?[^=#]*=#', '#', line)
+    # 4. حذف ? تنهای قبل از #
+    line = re.sub(r'\?#', '#', line)
     return line
 
 try:
@@ -19,7 +22,7 @@ except FileNotFoundError:
 
 cleaned = [clean_line(line) for line in lines]
 
-with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+with open(INPUT_FILE, 'w', encoding='utf-8') as f:
     f.write('\n'.join(cleaned))
 
-print(f"✅ Cleaned {len(cleaned)} configs (replaced &amp; with &, removed stray & before #)")
+print(f"✅ Cleaned {len(cleaned)} configs")
