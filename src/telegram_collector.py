@@ -18,9 +18,8 @@ DB_FILE = "collector.db"             # همان دیتابیس اصلی پروژ
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 SLEEP_BETWEEN_CHANNELS = 1.5         # تاخیر بین واکشی کانال‌ها (حفظ ادب در scraping)
 
-# ----- الگوی استخراج کانفیگ -----
 V2RAY_PATTERN = re.compile(
-    r'(?:vless|vmess|trojan|ss|ssr|hysteria|hysteria2|tuic|juicity|socks[45]?)://[^\s`\'"<>]+',
+    r'(?:vless|vmess|trojan|ss|ssr|hysteria|hysteria2|tuic|juicity|socks[45]?)://[A-Za-z0-9+/=:_@.?&~-]+',
     flags=re.IGNORECASE
 )
 
