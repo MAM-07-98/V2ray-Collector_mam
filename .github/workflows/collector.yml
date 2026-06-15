@@ -23,40 +23,46 @@ jobs:
       - name: Run Telegram Collector
         run: python src/telegram_collector.py
 
-      - name: Export configs from database to all_servers.txt
+      - name: Export latest configs from database
         run: |
           if [ -f collector.db ]; then
-            sqlite3 collector.db "SELECT config FROM configs ORDER BY rowid DESC LIMIT 100;" > all_servers.txt
-            COUNT=$(wc -l < all_servers.txt)
-            echo "✅ $COUNT configs exported to all_servers.txt"
+            sqlite3 collector.db "SELECT config FROM configs ORDER BY rowid DESC LIMIT 200;" > all_servers.txt
+            echo "✅ Exported $(wc -l < all_servers.txt) configs"
           else
-            echo "⚠️ collector.db not found, creating empty all_servers.txt"
             touch all_servers.txt
           fi
 
-      - name: Clean configs (replace &amp; with &)
+      - name: Split stuck links (اگر دو تا لینک به هم چسبیده باشند)
+        run: |
+          if [ -s all_servers.txt ] && [ -f src/split_links.py ]; then
+            python src/split_links.py all_servers.txt
+          fi
+
+      - name: Remove duplicate configs (هوشمندانه)
+        run: |
+          if [ -s all_servers.txt ] && [ -f src/dedup_configs.py ]; then
+            python src/dedup_configs.py all_servers.txt --clean
+          fi
+
+      - name: Clean configs (جایگزینی &amp; و حذف پارامترهای خالی)
         run: |
           if [ -s all_servers.txt ]; then
             python clean_configs.py
-          else
-            echo "⚠️ all_servers.txt empty, skipping clean"
           fi
 
-      - name: Fix Config Remarks
+      - name: Fix Config Remarks (اضافه کردن ریمارک فقط در صورت نیاز)
         run: |
-          if [ -f all_servers.txt ]; then
+          if [ -s all_servers.txt ] && [ -f edit_remarks.py ]; then
             python edit_remarks.py
-          else
-            echo "⚠️ all_servers.txt not found, skipping remark fix."
           fi
 
-      - name: (Optional) Rebuild protocol files
+      - name: Rebuild protocol files (تولید فایل‌های جداگانه برای هر پروتکل)
         run: |
           if [ -f src/rebuild_protocols.py ]; then
             python src/rebuild_protocols.py
           fi
 
-      - name: Commit and push
+      - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
