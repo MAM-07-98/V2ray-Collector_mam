@@ -34,7 +34,14 @@ jobs:
             touch all_servers.txt
           fi
 
-          
+         - name: Clean configs (replace &amp; with &)
+           run: |
+            if [ -s all_servers.txt ]; then
+              python clean_configs.py
+             else
+              echo "⚠️ all_servers.txt empty, skipping clean"
+             fi
+ 
       - name: Fix Config Remarks
         run: |
           if [ -f all_servers.txt ]; then
