@@ -26,7 +26,7 @@ jobs:
       - name: Export configs from database to all_servers.txt
         run: |
           if [ -f collector.db ]; then
-            sqlite3 collector.db "SELECT config FROM configs;" > all_servers.txt
+            sqlite3 collector.db "SELECT config FROM configs ORDER BY rowid DESC LIMIT 100;" > all_servers.txt
             COUNT=$(wc -l < all_servers.txt)
             echo "✅ $COUNT configs exported to all_servers.txt"
           else
