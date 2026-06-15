@@ -50,11 +50,6 @@ jobs:
             python clean_configs.py
           fi
 
-      - name: Fix Config Remarks (اضافه کردن ریمارک فقط در صورت نیاز)
-        run: |
-          if [ -s all_servers.txt ] && [ -f edit_remarks.py ]; then
-            python edit_remarks.py
-          fi
 
       - name: Rebuild protocol files (تولید فایل‌های جداگانه برای هر پروتکل)
         run: |
